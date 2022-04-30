@@ -1,10 +1,10 @@
-# WASI Clocks
+# WASI Poll
 
 A proposed [WebAssembly System Interface](https://github.com/WebAssembly/WASI) API.
 
 ### Current Phase
 
-WASI-clocks is currently in [Phase 2].
+WASI-poll is currently in [Phase 2].
 
 [Phase 2]: https://github.com/WebAssembly/WASI/blob/42fe2a3ca159011b23099c3d10b5b1d9aff2140e/docs/Proposals.md#phase-2---proposed-spec-text-available-cg--wg
 
@@ -14,10 +14,10 @@ WASI-clocks is currently in [Phase 2].
 
 ### Phase 4 Advancement Criteria
 
-WASI clocks must have host implementations which can pass the testsuite
+WASI poll must have host implementations which can pass the testsuite
 on at least Windows, macOS, and Linux.
 
-WASI clocks must have at least two complete independent implementations.
+WASI poll must have at least two complete independent implementations.
 
 ## Table of Contents [if the explainer is longer than one printed page]
 
@@ -38,22 +38,21 @@ WASI clocks must have at least two complete independent implementations.
 
 ### Introduction
 
-WASI Clocks is a WASI API for reading the current time and measuring elapsed
-time.
+WASI Poll is a WASI API for waiting for I/O events on multiple handles.
 
-Unlike many clock APIs, WASI Clocks is capability-oriented. Instead
-of having functions that implicitly reference a clock, WASI clocks' APIs are
-passed a clock handle.
+It is similar in spirit to the POSIX `poll` function.
 
 ### Goals
 
-The primary goal of WASI Clocks is to allow users to use WASI programs to
-read the current time and to measure elapsed time.
+The primary goal of WASI Poll is to allow users to use WASI programs to
+be able to wait for stream read, stream write, stream error, and clock timeout
+events, on multiple handles.
 
 ### Non-goals
 
-WASI Clocks is not aiming to cover timezones, daylight savings time, date
-formatting, or modifying the time of a clock.
+WASI Poll is not yet aiming to support large numbers of handles efficiently.
+Future proposals will ideally add something similar to Linux's `epoll`, but
+that is not yet addressed.
 
 ### API walk-through
 
@@ -71,21 +70,18 @@ formatting, or modifying the time of a clock.
 
 [This section should mostly refer to the .wit.md file that specifies the API. This section is for any discussion of the choices made in the API which don't make sense to document in the spec file itself.]
 
-### What should the type of a timestamp be?
+### Why is the function called `poll_oneoff`?
 
-In POSIX, `clock_gettime` uses a single `timespec` type to represent timestamps
-from all clocks, with two fields: seconds and nanoseconds. However, in applications
-that just need to measure elapsed time, and don't need to care about wall clock
-time, working with seconds and nanoseconds as separate fields adds extra code size
-and complexity. For these use cases, a single 64-bit nanoseconds value, which can
-measure up to about 584 years, is sufficient and simpler.
+This is referencing the fact that this function is not efficient when used
+repeatedly with the same large set of handles. In the future, it is expected
+that follow-up proposals will add a poll function which can create sets of
+handles that can be polled together efficiently.
 
-For wall clock time, it's still useful to have both seconds and nanoseconds, both
-to be able to represent dates in the far future, and to reflect the fact that
-code working with wall clock time will often want to treat seconds and fractions
-of seconds differently.
+### Why doesn't the return type have a way to indicate failure?
 
-And so, this API uses different data types for different types of clocks.
+`poll_oneoff` itself never fails. It may be interrupted, and there may be
+errors on the I/O resources referred to by the handles passed to it, but
+the poll isn't doing any I/O of its own, so it has no need to fail.
 
 ### Considered alternatives
 
