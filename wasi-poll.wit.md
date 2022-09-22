@@ -152,5 +152,5 @@ resource descriptor {
 /// Linux's `epoll` which allows sets of subscriptions to be registered and
 /// made efficiently reusable.
 ```wit
-poll-oneoff: function(in: list<subscription>) -> list<event>
+poll-oneoff: func(in: list<subscription>) -> list<event>
 ```
