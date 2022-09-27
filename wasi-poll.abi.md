@@ -188,7 +188,7 @@ Size: 16, Alignment: 8
 ##### Params
 
 - <a href="#poll_oneoff.in" name="poll_oneoff.in"></a> `in`: list<[`subscription`](#subscription)>
-##### Result
+##### Results
 
 - list<[`event`](#event)>
 
