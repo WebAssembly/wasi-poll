@@ -26,9 +26,12 @@ default interface wasi-poll {
   type pollable = u32
 ```
 
+## `drop-pollable`
+```wit
 /// Dispose of the specified `pollable`, after which it may no longer be used.
 // TODO(} /* resource pollable */)
 drop-pollable: func(this: pollable)
+```
 
 ## `poll-oneoff`
 ```wit
