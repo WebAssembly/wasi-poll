@@ -23,6 +23,15 @@ Size: 4, Alignment: 4
 
 ----
 
+#### <a href="#drop_pollable" name="drop_pollable"></a> `drop-pollable` 
+
+Dispose of the specified `pollable`, after which it may no longer be used.
+##### Params
+
+- <a href="#drop_pollable.this" name="drop_pollable.this"></a> `this`: [`pollable`](#pollable)
+
+----
+
 #### <a href="#poll_oneoff" name="poll_oneoff"></a> `poll-oneoff` 
 
 Poll for completion on a set of pollables.
