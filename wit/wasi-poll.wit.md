@@ -40,9 +40,9 @@ drop-pollable: func(this: pollable)
 /// The "oneoff" in the name refers to the fact that this function must do a
 /// linear scan through the entire list of subscriptions, which may be
 /// inefficient if the number is large and the same subscriptions are used
-/// many times. In the future, it may be accompanied by an API similar to
-/// Linux's `epoll` which allows sets of subscriptions to be registered and
-/// made efficiently reusable.
+/// many times. In the future, this is expected to be obsoleted by the
+/// component model async proposal, which will include a scalable waiting
+/// facility.
 ///
 /// Note that the return type would ideally be `list<bool>`, but that would
 /// be more difficult to polyfill given the current state of `wit-bindgen`.
