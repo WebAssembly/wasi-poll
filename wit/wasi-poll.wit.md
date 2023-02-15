@@ -46,7 +46,7 @@ drop-pollable: func(this: pollable)
 ///
 /// Note that the return type would ideally be `list<bool>`, but that would
 /// be more difficult to polyfill given the current state of `wit-bindgen`.
-/// See https://github.com/bytecodealliance/preview2-prototyping/pull/11#issuecomment-1329873061
+/// See <https://github.com/bytecodealliance/preview2-prototyping/pull/11#issuecomment-1329873061>
 /// for details.  For now, we use zero to mean "not ready" and non-zero to
 /// mean "ready".
 poll-oneoff: func(in: list<pollable>) -> list<u8>
