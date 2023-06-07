@@ -30,10 +30,8 @@ interface poll {
     /// component model async proposal, which will include a scalable waiting
     /// facility.
     ///
-    /// Note that the return type would ideally be `list<bool>`, but that would
-    /// be more difficult to polyfill given the current state of `wit-bindgen`.
-    /// See <https://github.com/bytecodealliance/preview2-prototyping/pull/11#issuecomment-1329873061>
-    /// for details.  For now, we use zero to mean "not ready" and non-zero to
-    /// mean "ready".
-    poll-oneoff: func(in: list<pollable>) -> list<u8>
+    /// Returns a list<bool>, which is the same length as the list<pollablke>
+    /// arguments. Each element corresponds to the readiness of the element
+    /// at the same index in the list of pollables.
+    poll-oneoff: func(in: list<pollable>) -> list<bool>
 }
