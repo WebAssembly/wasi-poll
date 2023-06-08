@@ -2,11 +2,11 @@
 <ul>
 <li>Imports:
 <ul>
-<li>interface <a href="#poll"><code>poll</code></a></li>
+<li>interface <a href="#wasi:poll_poll"><code>wasi:poll/poll</code></a></li>
 </ul>
 </li>
 </ul>
-<h2><a name="poll">Import interface poll</a></h2>
+<h2><a name="wasi:poll_poll">Import interface wasi:poll/poll</a></h2>
 <p>A poll API intended to let users wait for I/O events on multiple handles
 at once.</p>
 <hr />
