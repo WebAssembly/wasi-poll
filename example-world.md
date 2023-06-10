@@ -40,16 +40,14 @@ inefficient if the number is large and the same subscriptions are used
 many times. In the future, this is expected to be obsoleted by the
 component model async proposal, which will include a scalable waiting
 facility.</p>
-<p>Note that the return type would ideally be <code>list&lt;bool&gt;</code>, but that would
-be more difficult to polyfill given the current state of <code>wit-bindgen</code>.
-See <a href="https://github.com/bytecodealliance/preview2-prototyping/pull/11#issuecomment-1329873061">https://github.com/bytecodealliance/preview2-prototyping/pull/11#issuecomment-1329873061</a>
-for details.  For now, we use zero to mean &quot;not ready&quot; and non-zero to
-mean &quot;ready&quot;.</p>
+<p>The result list<bool> is the same length as the argument
+list<pollable>, and indicates the readiness of each corresponding
+element in that / list, with true indicating ready.</p>
 <h5>Params</h5>
 <ul>
 <li><a name="poll_oneoff.in"><code>in</code></a>: list&lt;<a href="#pollable"><a href="#pollable"><code>pollable</code></a></a>&gt;</li>
 </ul>
 <h5>Return values</h5>
 <ul>
-<li><a name="poll_oneoff.0"></a> list&lt;<code>u8</code>&gt;</li>
+<li><a name="poll_oneoff.0"></a> list&lt;<code>bool</code>&gt;</li>
 </ul>
