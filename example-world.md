@@ -11,27 +11,11 @@
 at once.</p>
 <hr />
 <h3>Types</h3>
-<h4><a name="pollable"><code>type pollable</code></a></h4>
-<p><code>u32</code></p>
-<p>A "pollable" handle.
-<p>This is conceptually represents a <code>stream&lt;_, _&gt;</code>, or in other words,
-a stream that one can wait on, repeatedly, but which does not itself
-produce any data. It's temporary scaffolding until component-model's
-async features are ready.</p>
-<p>And at present, it is a <code>u32</code> instead of being an actual handle, until
-the wit-bindgen implementation of handles and resources is ready.</p>
-<p><a href="#pollable"><code>pollable</code></a> lifetimes are not automatically managed. Users must ensure
-that they do not outlive the resource they reference.</p>
-<p>This <a href="https://github.com/WebAssembly/WASI/blob/main/docs/WitInWasi.md#Resources">represents a resource</a>.</p>
+<h4><a name="pollable"><code>resource pollable</code></a></h4>
+<h5>Resource Members</h5>
+<p>TODO</p>
 <hr />
 <h3>Functions</h3>
-<h4><a name="drop_pollable"><code>drop-pollable: func</code></a></h4>
-<p>Dispose of the specified <a href="#pollable"><code>pollable</code></a>, after which it may no longer
-be used.</p>
-<h5>Params</h5>
-<ul>
-<li><a name="drop_pollable.this"><code>this</code></a>: <a href="#pollable"><a href="#pollable"><code>pollable</code></a></a></li>
-</ul>
 <h4><a name="poll_oneoff"><code>poll-oneoff: func</code></a></h4>
 <p>Poll for completion on a set of pollables.</p>
 <p>This function takes a list of pollables, which identify I/O sources of
@@ -54,7 +38,7 @@ component model async proposal, which will include a scalable waiting
 facility.</p>
 <h5>Params</h5>
 <ul>
-<li><a name="poll_oneoff.in"><code>in</code></a>: list&lt;<a href="#pollable"><a href="#pollable"><code>pollable</code></a></a>&gt;</li>
+<li><a name="poll_oneoff.in"><code>in</code></a>: list&lt;own&lt;<a href="#pollable"><a href="#pollable"><code>pollable</code></a></a>&gt;&gt;</li>
 </ul>
 <h5>Return values</h5>
 <ul>
