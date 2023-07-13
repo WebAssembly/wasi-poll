@@ -34,15 +34,20 @@ be used.</p>
 </ul>
 <h4><a name="poll_oneoff"><code>poll-oneoff: func</code></a></h4>
 <p>Poll for completion on a set of pollables.</p>
+<p>This function takes a list of pollables, which identify I/O sources of
+interest, and waits until one or more of the events is ready for I/O.</p>
+<p>The result <code>list&lt;bool&gt;</code> is the same length as the argument
+<code>list&lt;pollable&gt;</code>, and indicates the readiness of each corresponding
+element in that list, with true indicating ready. A single call can
+return multiple true elements.</p>
+<p>A timeout can be implemented by adding a pollable from the
+wasi-clocks API to the list.</p>
 <p>The &quot;oneoff&quot; in the name refers to the fact that this function must do a
 linear scan through the entire list of subscriptions, which may be
 inefficient if the number is large and the same subscriptions are used
 many times. In the future, this is expected to be obsoleted by the
 component model async proposal, which will include a scalable waiting
 facility.</p>
-<p>The result list<bool> is the same length as the argument
-list<pollable>, and indicates the readiness of each corresponding
-element in that / list, with true indicating ready.</p>
 <h5>Params</h5>
 <ul>
 <li><a name="poll_oneoff.in"><code>in</code></a>: list&lt;<a href="#pollable"><a href="#pollable"><code>pollable</code></a></a>&gt;</li>
