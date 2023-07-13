@@ -42,6 +42,10 @@ element in that list, with true indicating ready. A single call can
 return multiple true elements.</p>
 <p>A timeout can be implemented by adding a pollable from the
 wasi-clocks API to the list.</p>
+<p>This function does not return a <code>result</code>; polling in itself does not
+do any I/O so it doesn't fail. If any of the I/O sources identified by
+the pollables has an error, it is indicated by marking the source as
+ready in the <code>list&lt;bool&gt;</code>.</p>
 <p>The &quot;oneoff&quot; in the name refers to the fact that this function must do a
 linear scan through the entire list of subscriptions, which may be
 inefficient if the number is large and the same subscriptions are used
