@@ -1,5 +1,11 @@
 # WASI Poll
 
+This wasi-poll repository has been subsumed by [wasi-io](https://github.com/WebAssembly/wasi-io).
+Its contents, including the specification of the `poll-oneff` function, which has been renamed
+to `poll-list`, has moved there.
+
+---
+
 A proposed [WebAssembly System Interface](https://github.com/WebAssembly/WASI) API.
 
 ### Current Phase
